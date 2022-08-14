@@ -163,12 +163,15 @@ function deserializeDatasource(datasource: DataSource): string {
 }
 
 function deserializeGenerator(generator: GeneratorConfig): string {
-  const { binaryTargets, name, output, provider, previewFeatures } = generator;
+  const { binaryTargets, name, output, provider, previewFeatures, config } = generator;
+  const configAttributes: string[] = Object.entries(config).map(([key, value]) => `${key} = "${value}"`);
+
   return renderBlock('generator', name, [
     renderProvider(provider.value),
     renderOutput(output?.value || null),
     renderBinaryTargets(binaryTargets as unknown as string[]),
-    renderPreviewFeatures(previewFeatures)
+    renderPreviewFeatures(previewFeatures),
+    ...configAttributes
   ]);
 }
 
