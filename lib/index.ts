@@ -15,7 +15,7 @@ class Prismix extends Command {
   static description =
     'Allows you to have multiple Prisma schema files with shared model relations.';
 
-  static flags = {
+  static flags: any = {
     version: flags.version({ char: 'v' }),
     help: flags.help({ char: 'h' })
   };
